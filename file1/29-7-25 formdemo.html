@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Demo</title>
+</head>
+<body>
+    <form action="Success.html">
+        <caption>Student Registration System</caption> <br></br>
+        <div
+      <label for="fn">  First Name: </label>
+        <input type="text" id="fn" name="firstname" required>  <br>
+        <label for="ln">  Last Name: </label>
+        <input type="text" id="ln" name="lastname" required> <br>
+        <label for="gn">  Gender: </label>
+        <input type="radio" name="gender" value="male" required> Male
+        <input type="radio" name="gender" value="female" required>Female
+      <br>  <label>Email:</label>
+      <input type="email" required><br>
+      <label>contact:</label>
+      <input type="tel" pattern="[0-9]{10}"><br>
+      <label>Date of birth:</label>
+      <input type="date" required><br>
+      <label>Adress:</label>
+      <textarea rows="10"></textarea><br>
+      <label>Languages known:</label>
+      <input type="checkbox" value="Telugu">Telugu
+      <input type="checkbox" value="English">English
+      <input type="checkbox" value="Hindi">Hindi
+      <input type="checkbox" value="Tamil">Tamil
+      <br><label>Branch:</label>
+      <option value="--select--">--select--</option>
+      <option value="CSE">CSE</option>
+      <option value="ECE">ECE</option>
+      <option value="MEC">MEC</option>
+      <option value="CIV">CIV</option>
+      <option value="EEE">EEE</option>
+      <br><label>Upload Resume:</label>
+      <input type="file"><br>
+      <button>Submit</button>
+    </form>
+</body>
+</html>

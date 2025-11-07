@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    header .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    header .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 40px;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      object-fit: cover;
+    }
+
+    .details {
+      font-size: 18px;
+    }
+
+    .details strong {
+      display: inline-block;
+      width: 120px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .social-icons {
+      margin-top: 5px;
+    }
+
+    .social-icons i {
+      margin: 0 10px;
+      cursor: pointer;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <h1>My Profile</h1>
+    <div class="nav-links">
+      <a href="#">Login</a>
+      <a href="#">Signup</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <img src="profile.jpg" alt="Profile Image" class="profile-img">
+    <div class="details">
+      <p><strong>Name:</strong> Sridevi</p>
+      <p><strong>Regd. No:</strong> 2200100006</p>
+      <p><strong>Department:</strong> Computer Science</p>
+      <p><strong>Email:</strong> sridevi@example.com</p>
+      <p><strong>Contact:</strong> +91-9876543210</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 All Rights Reserved
+    <div class="social-icons">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-whatsapp"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-instagram"></i>
+    </div>
+  </footer>
+</body>
+</html>

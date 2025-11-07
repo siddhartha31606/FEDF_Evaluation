@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediLink - Online Medical System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    header {
+      background: #0077b6;
+      color: #fff;
+      padding: 15px 20px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .left, nav .right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    nav .left {
+      justify-content: flex-start;
+    }
+    nav .center {
+      flex: 1;
+      text-align: center;
+    }
+    nav .right {
+      justify-content: flex-end;
+      gap: 15px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    nav h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .login-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    .login-box h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      background: #0077b6;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .login-box button:hover {
+      background: #005f86;
+    }
+    .dashboard, .role-section {
+      display: none;
+      margin: 40px;
+      text-align: center;
+    }
+    .role-blocks {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .block {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .block:hover {
+      transform: scale(1.05);
+      background: #e6f2ff;
+    }
+    .block h3 {
+      margin-bottom: 10px;
+      color: #0077b6;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .options button {
+      width: 250px;
+      margin: 10px;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #0077b6;
+      color: white;
+    }
+    .options button:hover {
+      background: #005f86;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <div class="left"></div>
+      <div class="center">
+        <h1>MediLink</h1>
+      </div>
+      <div class="right">
+        <a href="#">Log In</a>
+        <a href="#">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Login Page -->
+  <div class="container" id="login-page">
+    <div class="login-box">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
+      <button onclick="showDashboard()">Login</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <h2>Select Your Role</h2>
+    <div class="role-blocks">
+      <div class="block" onclick="showRole('admin')">
+        <h3>Admin</h3>
+      </div>
+      <div class="block" onclick="showRole('doctor')">
+        <h3>Doctor</h3>
+      </div>
+      <div class="block" onclick="showRole('patient')">
+        <h3>Patient</h3>
+      </div>
+      <div class="block" onclick="showRole('pharmacist')">
+        <h3>Pharmacist</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Role Sections -->
+  <div class="role-section" id="admin">
+    <h2>Admin Options</h2>
+    <div class="options">
+      <button>Manage Users</button>
+      <button>System Configurations</button>
+      <button>Security Settings</button>
+    </div>
+    <button onclick="backToDashboard()">⬅ Back</button>
+  </div>
+
+  <div class="role-section" id="doctor">
+    <h2>Doctor Options</h2>
+    <div class="options">
+      <button>Start Virtual Consultation</button>
+      <button>Create Prescription</button>
+      <button>View Patient Records</button>
+    </div>
+    <button onclick="backToDashboard()">⬅ Back</button>
+  </div>
+
+  <div class="role-section" id="patient">
+    <h2>Patient Options</h2>
+    <div class="options">
+      <button>Book Appointment</button>
+      <button>View Medical Records</button>
+      <button>Access Lab Reports</button>
+    </div>
+    <button onclick="backToDashboard()">⬅ Back</button>
+  </div>
+
+  <div class="role-section" id="pharmacist">
+    <h2>Pharmacist Options</h2>
+    <div class="options">
+      <button>Process Prescriptions</button>
+      <button>Track Medicine Orders</button>
+      <button>Manage Inventory</button>
+    </div>
+    <button onclick="backToDashboard()">⬅ Back</button>
+  </div>
+
+  <script>
+    function showDashboard() {
+      const username = document.querySelector('.login-box input[type="text"]').value.trim();
+      const password = document.querySelector('.login-box input[type="password"]').value.trim();
+
+      if (!username || !password) {
+        alert('Please fill this password');
+        return;
+      }
+
+      document.getElementById("login-page").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    }
+
+    function showRole(role) {
+      document.getElementById("dashboard").style.display = "none";
+      document.querySelectorAll(".role-section").forEach(el => el.style.display = "none");
+      document.getElementById(role).style.display = "block";
+    }
+
+    function backToDashboard() {
+      document.querySelectorAll(".role-section").forEach(el => el.style.display = "none");
+      document.getElementById("dashboard").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

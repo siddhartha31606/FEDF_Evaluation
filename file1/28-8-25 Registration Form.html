@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    .error { color: red; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+<form name="myForm" onsubmit="return validateForm(event)">
+  <label>Full Name: </label>
+  <input type="text" name="fname">
+  <span id="nameError" class="error"></span><br><br>
+
+  <label>Username: </label>
+  <input type="text" name="username">
+  <span id="usernameError" class="error"></span><br><br>
+
+  <label>Password: </label>
+  <input type="password" name="password">
+  <span id="passwordError" class="error"></span><br><br>
+
+  <label>Confirm Password: </label>
+  <input type="password" name="confirmPassword">
+  <span id="confirmPasswordError" class="error"></span><br><br>
+
+  <label>Email: </label>
+  <input type="text" name="email">
+  <span id="emailError" class="error"></span><br><br>
+
+  <label>Mobile: </label>
+  <input type="text" name="mobile">
+  <span id="mobileError" class="error"></span><br><br>
+
+  <label>Date of Birth: </label>
+  <input type="date" name="dob">
+  <span id="dobError" class="error"></span><br><br>
+
+  <label>Gender: </label>
+  <input type="radio" name="gender" value="Male"> Male
+  <input type="radio" name="gender" value="Female"> Female
+  <input type="radio" name="gender" value="Other"> Other
+  <span id="genderError" class="error"></span><br><br>
+
+  <label>Address: </label>
+  <textarea name="address"></textarea>
+  <span id="addressError" class="error"></span><br><br>
+
+  <label>Pincode: </label>
+  <input type="text" name="pincode">
+  <span id="pincodeError" class="error"></span><br><br>
+
+  <input type="submit" value="Register">
+</form>
+
+<script>
+function validateForm(event) {
+  event.preventDefault(); // prevent auto-submit
+  let isValid = true;
+  document.querySelectorAll(".error").forEach(e => e.innerText = "");
+
+  let fullname = document.forms["myForm"]["fname"].value.trim();
+  let username = document.forms["myForm"]["username"].value.trim();
+  let password = document.forms["myForm"]["password"].value;
+  let confirmPassword = document.forms["myForm"]["confirmPassword"].value;
+  let email = document.forms["myForm"]["email"].value.trim();
+  let mobile = document.forms["myForm"]["mobile"].value.trim();
+  let dob = document.forms["myForm"]["dob"].value;
+  let gender = document.forms["myForm"]["gender"].value;
+  let address = document.forms["myForm"]["address"].value.trim();
+  let pincode = document.forms["myForm"]["pincode"].value.trim();
+
+  // Full name: mandatory
+  if (fullname === "" || !/^[A-Za-z\s]+$/.test(fullname)) {
+    document.getElementById("nameError").innerText = "Full name must contain only letters";
+    isValid = false;
+  }
+
+  // Username: only alphabets
+  if (!/^[A-Za-z]+$/.test(username)) {
+    document.getElementById("usernameError").innerText = "Only alphabets allowed in username";
+    isValid = false;
+  }
+
+  // Password
+  let passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/;
+  if (!passRegex.test(password)) {
+    document.getElementById("passwordError").innerText = "Password must be at least 8 chars with uppercase, lowercase, number, special char";
+    isValid = false;
+  }
+
+  // Confirm Password
+  if (password !== confirmPassword || confirmPassword === "") {
+    document.getElementById("confirmPasswordError").innerText = "Passwords do not match";
+    isValid = false;
+  }
+
+  // Email
+  let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailRegex.test(email)) {
+    document.getElementById("emailError").innerText = "Invalid email format";
+    isValid = false;
+  }
+
+  // Mobile
+  let mobileRegex = /^[6-9][0-9]{9}$/;
+  if (!mobileRegex.test(mobile)) {
+    document.getElementById("mobileError").innerText = "Enter a valid 10-digit mobile number starting with 6-9";
+    isValid = false;
+  }
+
+  // DOB: must be 18+
+  if (dob === "") {
+    document.getElementById("dobError").innerText = "Please select your date of birth";
+    isValid = false;
+  } else {
+    let birthDate = new Date(dob);
+    let today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    let m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    if (age < 18) {
+      document.getElementById("dobError").innerText = "You must be at least 18 years old";
+      isValid = false;
+    }
+  }
+
+  // Gender
+  if (!gender) {
+    document.getElementById("genderError").innerText = "Please select your gender";
+    isValid = false;
+  }
+
+  // Address
+  if (address.length < 10) {
+    document.getElementById("addressError").innerText = "Address must be at least 10 characters long";
+    isValid = false;
+  }
+
+  // Pincode
+  if (!/^[0-9]{6}$/.test(pincode)) {
+    document.getElementById("pincodeError").innerText = "Enter a valid 6-digit pincode";
+    isValid = false;
+  }
+
+  if (isValid) {
+    alert("Form submitted successfully!");
+    document.myForm.submit();
+  }
+}
+</script>
+
+</body>
+</html>
